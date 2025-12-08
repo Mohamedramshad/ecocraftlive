@@ -1,0 +1,40 @@
+{% extends 'base/manager-base.html' %}
+{% load static %}
+{% block container %}
+
+
+
+{% include 'includes/manager-nav.html' %}
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Create Legacy</h4>
+                        <div class="basic-form">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-row">
+                                    <div class="form-group col-12 col-md-6">
+                                        <label for="id_title">Title</label>
+                                        {{ form.title }}
+                                    </div>
+                                    <div class="form-group col-12 col-md-6">
+                                        <label for="id_image">Legacy Image</label>
+                                        {{ form.image }}
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                            {% if error %}
+                                <p>{{ message }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

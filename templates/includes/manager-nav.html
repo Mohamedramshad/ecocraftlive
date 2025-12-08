@@ -1,0 +1,147 @@
+{% load static %}
+<!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+            <div class="brand-logo">
+                <a href="#">
+                    <b class="logo-abbr"><img src="#" alt=""> </b>
+                    <span class="logo-compact"><img src="{% static './images/logo-compact.png' %}" alt=""></span>
+                    <span class="brand-title">
+                    </span>
+                </a>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header" style="margin-top: -20px;">    
+            <div class="header-content clearfix">
+                
+                <div class="nav-control">
+                    <div class="hamburger">
+                        <span class="toggle-icon"><i class="icon-menu"></i></span>
+                    </div>
+                </div>
+                <div class="header-left">
+                    <div class="input-group icons">
+                        <div class="drop-down animated flipInX d-md-none">
+                            <form action="#">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <ul class="clearfix">                       
+                        <li class="icons dropdown">
+                            <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
+                                <span class="activity active"></span>
+                                <i class='bx bxs-user' style="font-size: 25px; position: relative; top: 22px; left: 5px;"></i> 
+                            </div>
+                            <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
+                                <div class="dropdown-content-body">
+                                    <ul>                                        
+                                        <li><a href="{% url 'manager:logout' %}"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="nk-sidebar">           
+            <div class="nk-nav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li class="nav-label">Dashboard</li>                                      
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class='bx bx-slider' ></i></i><span class="nav-text">slider</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url 'manager:slider' %}">List</a></li>
+                            <li><a href="{% url 'manager:slider_add' %}">Add</a></li>
+                        </ul>
+                    </li>
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class='bx bx-category'></i><span class="nav-text">legacy</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url 'manager:legacy' %}">List</a></li>
+                            <li><a href="{% url 'manager:legacy_add' %}">Add</a></li>
+                        </ul>
+                    </li>
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class='bx bx-package'></i></i><span class="nav-text">About box</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url 'manager:aboutbox' %}">List</a></li>
+                            <li><a href="{% url 'manager:aboutbox_add' %}">Add</a></li>
+                        </ul>
+                    </li>
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class='bx bx-category'></i></i><span class="nav-text">product Category</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url 'manager:product_category' %}">List</a></li>
+                            <li><a href="{% url 'manager:product_category_add' %}">Add</a></li>
+                        </ul>
+                    </li>                    
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class='bx bx-dots-vertical-rounded'></i></i><span class="nav-text">Product Feature</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url 'manager:product_feature' %}">List</a></li>
+                            <li><a href="{% url 'manager:product_feature_add' %}">Add</a></li>
+                        </ul>
+                    </li>
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class='bx bx-cart-alt'></i></i><span class="nav-text">product</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url 'manager:product' %}">List</a></li>
+                            <li><a href="{% url 'manager:product_add' %}">Add</a></li>
+                        </ul>
+                    </li>
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class='bx bx-category'></i></i><span class="nav-text">gallery category</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url 'manager:gallery_category' %}">List</a></li>
+                            <li><a href="{% url 'manager:gallery_category_add' %}">Add</a></li>
+                        </ul>
+                    </li>
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class='bx bx-photo-album'></i><span class="nav-text">gallery</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url 'manager:gallery' %}">List</a></li>
+                            <li><a href="{% url 'manager:gallery_add' %}">Add</a></li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->

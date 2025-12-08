@@ -1,0 +1,47 @@
+
+{% load static %}
+
+<footer>
+    <section class=" greenbg  text-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full  py-20 px-10 ">
+
+      <div class="w-full md:w-[95%]">
+        <img src="{% static './web/image/logo.png' %}" alt="" class="w-[40%] md:w-[70%]">
+        <p class=" w-full sm:text-[22px] md:text-[18px] text-justify">Founded in 1984, Ecocraft  Plywood has established itself as a leader in the interior infrastructure industry, renowned for its product excellence and streamlined service. The company's consistent commitment to quality and efficiency has made it a hallmark within the sector, setting high standards for others to follow.</p>
+      </div>
+
+      <div class="flex mt-[15%]">
+        <div class="pl-0 md:pl-10 pt-10 md:pt-0">
+          <h3>Quick Links</h3>
+          <ul>
+            <a href="https://ecocraftboards.com/"><li>Home</li></a>
+            <a href="https://ecocraftboards.com/about/"><li>About Us</li></a>
+            <a href="https://ecocraftboards.com/contact/"> <li>Contacts</li></a>
+           
+          </ul>
+        </div>
+  
+        <div class="pt-10 md:pt-0 pl-10 mt-[%]">
+          <h4 class="pb-[3%]">Products</h4>
+        <ul>
+            {% for category in product_category %}
+              <li class="pt-[5%]"><a href="{% url 'web:product' id=category.id %}">{{ category.name }} </a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-10 md:pt-0 mt-[15%]">
+        <h3 class="mb-[2%]">Quick Links</h3>
+        <ul>
+          <li><i class="fa-solid fa-location-dot mr-[2%]"></i> Door No: 5686633, Kuravilangad-Kottayam. 676108</li>
+          <li class="mr-[4%] mt-[2%]"> <i class="fa-solid fa-envelope mr-[2%]"></i>Email info@ecocraftboards.com</li>
+          <li class="mr-[4%] mt-[2%]"><i class="fa-solid fa-phone mr-[2%] "></i>Support +91 9447440617</li>
+        </ul>
+        <h4 class="flex mt-[2%]">
+          <a href="https://www.instagram.com/ecocraft_pvc?igsh=OHdzYzVseGQyb2do"><li class="  instagram "><i class="fa-brands fa-instagram icon1 icon"></i></li></a>
+          <a href="https://www.facebook.com/share/DgFR3M6F9eFHzh4T/?mibextid=LQQJ4d" class="ml-[5%] facebook pl-[4%] "><i class="fa-brands fa-facebook icon4 icon"></i></a>
+        </h4>
+      </div>
+
+    </section>
+  </footer>

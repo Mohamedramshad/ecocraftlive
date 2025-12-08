@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ecocraft</title>
+    <link rel="stylesheet" href="{% static 'web/css/style.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/09492618d1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    
+    <link rel="stylesheet" href="{% static 'web/css/about.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/tsparticles@1.26.0/dist/tsparticles.min.js"></script>
+    <script defer src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script defer src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script defer src="{% static 'web/js/about.js' %}"></script>
+    
+</head>
+<body>
+  
+  <section class="bg-white fixed top-0 mt-[-2px] md:mt-[0] left-0 right-0 z-50 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
+    <section class="wrapper flex items-center justify-between h-[60px] mb-[3%] px-4 md:px-8">
+      <div class="w-[50%] md:w-[40%] flex">
+          <img src="{% static './web/image/header.png' %}" alt="Ecocraft Logo" class="w-[90%] md:w-[45%]">
+      </div>
+      <div class="hidden md:block">
+          <ul class="flex space-x-4 md:space-x-6 lg:space-x-10 mt-[5%]">
+              <li>
+                  <a href="{% url 'web:index' %}" class="text-base text-[14px] md:text-[16px] lg:text-xl hover:border-b-1 border-green-700 mb-[10%] hover:text-green-700 transition duration-300">Home</a>
+              </li>
+              <li>
+                  <a href="{% url 'web:about' %}" class="text-base text-[14px] md:text-[16px] lg:text-xl hover:border-b-1 border-green-700 mb-[10%] hover:text-green-700 transition duration-300">About Us</a>
+              </li>
+                <li class="relative">
+                    <a href="#" onclick="toggleDropdown()" class="text-base text-[14px] md:text-[16px] lg:text-xl hover:border-b-1 border-green-700 mb-[10%] hover:text-green-700 transition duration-300">
+                        Products
+                    </a>
+                
+                    <!-- Dropdown menu -->
+                    <ul id="dropdownMenu" class="absolute hidden bg-white shadow-lg mt-2 p-2 w-40">
+                        {% for category in product_category %}
+                        <li>
+                            <a href="{% url 'web:product' id=category.id %}" class="block px-4 py-2 text-sm hover:bg-gray-200">{{ category.name }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            
+                     
+                      <li>
+                          <a href="{% url 'web:contact' %}" class="text-base text-[14px] md:text-lg lg:text-xl hover:border-b-1 border-green-700 mb-[10%] hover:text-black transition duration-300 text-white px-[20%] py-[12%] will-change-auto hover:will-change-scroll bg-green-700 rounded">Contact</a>
+                      </li>
+          </ul>
+      </div>
+      <!-- dropdown -->
+      
+      <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById("dropdownMenu");
+            if (dropdown.classList.contains("hidden")) {
+                dropdown.classList.remove("hidden");
+            } else {
+                dropdown.classList.add("hidden");
+            }
+        }
+    
+        // Optionally, close the dropdown when clicking outside
+        document.addEventListener("click", function(event) {
+            var dropdown = document.getElementById("dropdownMenu");
+            var isClickInside = event.target.closest("li.relative");
+            if (!isClickInside && !dropdown.classList.contains("hidden")) {
+                dropdown.classList.add("hidden");
+            }
+        });
+    </script>
+  
+  
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden flex items-center">
+            <button id="menu-toggle" class="text-gray-800 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- Mobile Menu -->
+<div id="mobile-menu" class="md:hidden bg-white shadow-lg rounded-lg py-2 hidden">
+    <ul class="flex flex-col space-y-2 px-4 mt-[5%]">
+        <li><a href="{% url 'web:index' %}" class="text-base text-[14px] md:text-lg hover:border-b-1 border-green-700 mb-[10%] hover:text-green-700 transition duration-300">Home</a></li>
+        <li><a href="{% url 'web:about' %}" class="text-base text-[14px] md:text-lg hover:border-b-1 border-green-700 mb-[10%] hover:text-green-700 transition duration-300">About Us</a></li>
+
+        <!-- Products with Dropdown -->
+        <li class="relative">
+            <a href="#" id="product-toggle" class="text-base text-[14px] md:text-lg hover:border-b-1 border-green-700 mb-[10%] hover:text-green-700 transition duration-300">Products</a>
+
+            <!-- Products Dropdown -->
+            <ul id="product-dropdown" class="hidden bg-white shadow-lg mt-2 p-2 w-full">
+                {% for category in product_category %}
+                <li>
+                    <a href="{% url 'web:product' id=category.id %}" class="block px-4 py-2 text-sm hover:bg-gray-200">{{ category.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+
+        <li><a href="{% url 'web:contact' %}" class="text-base text-[14px] md:text-lg hover:border-b-1 border-green-700 mb-[10%] hover:text-green-700 transition duration-300">Contact</a></li>
+    </ul>
+</div>
+
+<!-- JavaScript for Menu and Dropdown Toggle -->
+<script>
+    // Toggle the mobile menu visibility
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+        var menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+    });
+
+    // Toggle the Products dropdown in mobile menu
+    document.getElementById('product-toggle').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default anchor behavior
+        var dropdown = document.getElementById('product-dropdown');
+        dropdown.classList.toggle('hidden');
+    });
+
+    // Optional: Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+        var menu = document.getElementById('mobile-menu');
+        var menuToggle = document.getElementById('menu-toggle');
+        if (!menu.contains(event.target) && !menuToggle.contains(event.target) && !menu.classList.contains('hidden')) {
+            menu.classList.add('hidden');
+        }
+    });
+</script>
+</section>
+
+  <a href="#your-target-section" class="fixed right-0 top-1/2 mb-[5%] transform -translate-y-1/2 bg-red-500 text-white py-2 px-2 rounded-l-lg shadow-lg hover:bg-red-600 transition-colors z-50">
+    Enquire Now
+  </a>
+
+
+   
+  <a href="https://wa.me/917736688827" class="fixed right-0 top-1/2 transform -translate-y-1/2 bg-green-500 text-white py-2 px-4 rounded-l-lg shadow-lg hover:bg-red-600 transition-colors z-50">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+     <!-- Arrow Button -->
+
+     <button id="scrollTopBtn" class="fixed bottom-4 right-4 p-3 rounded-full bg-gray-600 text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+      <!-- SVG for Up Arrow -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+      </svg>
+    </button>
+
+    <script>
+
+            // JavaScript to scroll to the top
+      const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+      // Show button when scrolling down
+      window.onscroll = function() {
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+              scrollTopBtn.style.display = "block";
+          } else {
+              scrollTopBtn.style.display = "none";
+          }
+      };
+
+      // Scroll to the top when the button is clicked
+      scrollTopBtn.addEventListener('click', function() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+    </script>
+
+
+      <section class="bg-gray-100 text-gray-800 py-12 px-6 lg:px-20 mt-[14%] md:mt-[5%]">
+        <div class="max-w-7xl mx-auto">
+            <!-- Welcome Message -->
+            <div class="text-center mb-12">
+                <h1 class=" sm:mt-[10%] md:mt-[2%] sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
+                    Welcome to <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600">EcoCraft </span> 
+                </h1>
+                <!-- Experience -->
+            <div class="text-center mb-12">
+              <h2 class="text-[30px] md:text-[50px] font-semibold text-gray-800 animate-fade-in">
+                <span id=""  data-target="40">40</span> Years Industrial Experience
+            </h2>
+                <p class="text-xl md:text-2xl text-gray-600 animate-slide-in-left">
+                    Strong, Sustainable & Stylish
+                </p>
+                <p class="text-lg md:text-xl text-gray-500 italic mt-2 animate-slide-in-right">
+                    "Build Your Dream With Us"
+                </p>
+            </div>
+    
+            <!-- Specialization -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 animate-zoom-in">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-2">INNOVATION</h2>
+                    <p class="text-gray-600">
+                      
+                      Constantly creating products with attributes, features and benefits that are first in the category
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 animate-zoom-in">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-2">CUSTOMER CENTRICITY</h2>
+                    <p class="text-gray-600">
+                      Everything that we do is keeping customer at the center. Not just understanding customer's current needs but also anticipating their evolving needs and designing products and services to cater to them.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 animate-zoom-in">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-2">INCLUSIVITY</h2>
+                    <p class="text-gray-600">
+                      Ensuring that we move ahead together and not alone. Together with our partners, our customers, society and with nature.
+                    </p>
+                </div>
+            </div>
+    
+            
+            
+            <div class="mt-8 flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-12">
+                    <div class="text-gray-600 animate-slide-in-left">
+                        <p class="text-xl font-bold text-gray-800">Plywood Manufacturing and Distribution</p>
+                        <p class=" md:text-[30px]">80%</p>
+                    </div>
+                    <div class="text-gray-600 animate-slide-in-right">
+                        <p class="text-xl font-bold text-gray-800">PVC Board and WPC Board Production</p>
+                        <p class="md:text-[30px]">70%</p>
+                    </div>
+                    <div class="text-gray-600 animate-slide-in-left">
+                        <p class="text-xl font-bold text-gray-800">Timber Production</p>
+                        <p class="md:text-[30px]">70%</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- count  -->
+
+            <script>
+
+        document.addEventListener('scroll', function() {
+            const counterElement = document.getElementById('counter');
+            
+            if (!counterElement) return;
+
+            const counterPosition = counterElement.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.3;
+            
+            if (counterPosition < screenPosition && !counterElement.classList.contains('counted')) {
+                counterElement.classList.add('counted');
+                countUp(counterElement);
+            }
+        });
+
+        function countUp(element) {
+            const target = +element.getAttribute('data-target');
+            let count = 0;
+            const speed = 50; // Speed of counting (in milliseconds)
+
+            const interval = setInterval(() => {
+                count += 1;
+                element.innerText = count;
+
+                if (count >= target) {
+                    clearInterval(interval);
+                    element.innerText = target; // Ensure the final value is the target
+                }
+            }, speed);
+        }
+
+            </script>
+
+
+    
+            
+        </div>
+    </section>
+    
+    <!-- Tailwind CSS Animations (Add these to your Tailwind CSS config) -->
+    <style>
+    @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    @keyframes slide-in-left {
+        from { transform: translateX(-100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes slide-in-right {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes zoom-in {
+        from { transform: scale(0.8); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+    
+    .animate-fade-in {
+        animation: fade-in 1s ease-in-out;
+    }
+    
+    .animate-slide-in-left {
+        animation: slide-in-left 1s ease-in-out;
+    }
+    
+    .animate-slide-in-right {
+        animation: slide-in-right 1s ease-in-out;
+    }
+    
+    .animate-zoom-in {
+        animation: zoom-in 1s ease-in-out;
+    }
+    
+  </style>
+    
+    
+    
+      
+<section class="flex flex-col md:flex-row justify-between text-white mt-8 sm:mt-12 lg:mt-16 flex-wrap">
+    <!-- Text Section -->
+    <div class="w-full sm:w-full md:w-[48%] sm:px-6 md:pl-10 bg-black pb-6 mb-6 md:mb-0 rounded-lg md:rounded-ee-full opacity-0 slide-in-left">
+        <h2 class="mt-6 mb-4 text-center sm:text-left text-lg sm:text-xl lg:text-2xl font-bold">OUR VISION</h2>
+        <p class="text-sm sm:text-base md:text-lg text-justify px-4 sm:px-6 md:w-[80%]">
+            We shall always strive to exhibit exemplary focus, transparency, speed, and passion to evolve as the preferred choice of each consumer, providing them with the ideal product that is tailored to the changing times and their evolving aspirations. We aim to contribute meaningfully towards sustainability in the industry, nation, and society in general by adopting practices, processes, and technology that are relevant and best in class.
+        </p>
+    </div>
+
+    <!-- Image Section -->
+    <div class="w-full md:w-[48%] flex justify-center items-center">
+        <img src="{% static './web/image/badge.jpg' %}" alt="Image" class="w-[90%] sm:w-[80%] h-[40vh] sm:h-[50vh] rounded-lg transform transition-transform duration-500 hover:scale-110 hover:rounded-xl">
+    </div>
+</section>
+
+    
+
+<section class="flex text-white mt-[4%] flex-wrap">
+  <!-- Image with slide-in from left -->
+  <div class="w-full md:w-[48%] animate-slideInFromLeft">
+    <img src="{% static './web/image/newply.jpg' %}" alt="" class="w-full h-[60vh] mt-[5%] rounded">
+  </div>
+
+  <!-- Mission statement with slide-in from right -->
+  <div class="w-full py-[2%] md:w-[52%] mb-[5%] pl-[10%] bg-black md:relative right-[100px] animate-slideInFromRight">
+    <h2 class="ml-[20%] pt-[15%] mb-[2%] animated-bounce">OUR MISSION</h2>
+    <p class="mt-[4%]">
+      We shall always strive to exhibit exemplary focus, transparency, speed, and passion to evolve as the preferred choice of each consumer, providing them with the ideal product that is tailored to the changing times and their evolving aspirations. We aim to contribute meaningfully towards sustainability in the industry, nation, and society in general by adopting practices, processes, and technology that is relevant and best in class.
+    </p>
+  </div>
+</section>
+
+<!-- Add this in your Tailwind CSS configuration -->
+<style>
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slideInFromLeft {
+  animation: slideInFromLeft 0.6s ease-out forwards;
+}
+
+.animate-slideInFromRight {
+  animation: slideInFromRight 0.6s ease-out forwards;
+}
+</style>
+
+    
+    
+
+    <section id="about_bg" class="mt-[5%]">
+      <div class="content">
+        <h1>Your canvas for innovation</h1>
+        <p>
+          Ecocraft was rewarded by customer preference for its outstanding quality; it became the only brand in the country to be approved by
+           Lloyds Register and was certified as a BS-1088 product
+        </p>
+        <!-- <button ><a href="http://127.0.0.1:5501/product.html">Explore products</a></button> -->
+      </div>
+
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          {% for about in about %}
+          <div class="swiper-slide">
+            <img src="{{about.image.url}}" />
+          </div>
+        {% endfor %}
+
+
+          
+        </div>
+      </div>
+    </section>
+    
+
+    
+
+    <!-- About Section -->
+    <section class="about-section bg-gray-100 py-16">
+      <div class="container mx-auto px-4 md:px-8 text-center">
+        <h2 class="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600 mb-12" data-aos="fade-down">Our Specialization</h2>
+        
+    
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Manufacturing Section -->
+          <div class="about-card bg-white p-6 rounded-lg shadow-lg transform transition duration-1000 hover:scale-105" data-aos="fade-up">
+            <img src="{% static './web/image/factory.png' %}" alt="Manufacturing" class=" w-[20%] mb-4">
+            <h3 class="text-2xl font-semibold text-green-700 mb-3">MANUFACTURING</h3>
+            <p class="text-gray-700">
+              Eco craft is a part of Star Group, which has established itself as a prominent entity in the Indian manufacturing and service industry with 40 years of experience.
+            </p>
+          </div>
+     
+          <!-- Plywoods Section -->
+          <div class="about-card bg-white p-6 rounded-lg shadow-lg transform transition duration-500 hover:scale-105" data-aos="fade-up" data-aos-delay="200">
+            <img src="{% static './web/image/picker.png' %}" alt="Plywoods" class="w-[20%] mb-4">
+            <h3 class="text-2xl font-semibold text-green-700 mb-3">Products</h3>
+            <p class="text-gray-700">
+              Our diverse range of products includes Nostalgia, Woodline, Eco Craft, Woodcraft, Eco Friend, Magnum, Ultimate.
+            </p>
+          </div>
+    
+          <!-- Social Concern Section -->
+          <div class="about-card bg-white p-6 rounded-lg shadow-lg transform transition duration-500 hover:scale-105" data-aos="fade-up" data-aos-delay="400">
+            <img src="{% static './web/image/people.png' %}" alt="Social Concern" class="w-[20%] mb-4">
+            <h3 class="text-2xl font-semibold text-green-700 mb-3">Social Concern</h3>
+            <p class="text-gray-700">
+              With a strong focus on social responsibility, the company has been planting trees as a part of Project Green Hand.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      AOS.init();
+    </script>
+    
+    
+      
+      
+      
+    <!-- <section class="flex flex-wrap ">
+        <div class="w-full md:w-[40%]">
+            <img src="{% static './web/image/employee.PNG' %}" alt="" class="pt-[18%] ">
+        </div>
+        <div class=" w-fullmd:w-[60%]  bg-gray-200 ">
+            <h4 class="mt-[20%] text-green-500 font-bold pl-[10%]">INFRASTRUCTURE</h4>
+            <p class="text-[26px] pl-[10%]">
+                As one of the premium plywood brands in India, our production facility operates on the latest equipment powered by cutting-edge technology
+            </p>
+            <ul class="flex">
+                <div>
+                    <div><i class="fa-thin fa-industry-windows"></i></div>
+                    <li class="flex">
+                        Kolkata Factory: Mouza: Gangarampur, PO Dakshin Alipur, PS Bishnupur, DH Road, District - South 24 Parganas, West Bengal - 743503
+                        Sandila Factory: Plot No. B26 - 29 / C15 - 21-23, Phase - II, UPSIDC, Industrial Area Sandila, District Hardoi, Uttar Pradesh -241204
+                        Guwahati Factory: Palasbari, Mouza - Chayani, Kamrup - 781128
+
+
+
+                    </li>
+                </div>
+
+                
+            </ul>
+        </div>
+    </section> -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const observerOptions = {
+            threshold: 0.1, // Trigger when 10% of the element is visible
+          };
+      
+          const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("slide-in");
+                observer.unobserve(entry.target); // Stop observing once the animation is triggered
+              }
+            });
+          }, observerOptions);
+      
+          document.querySelectorAll(".slide-in").forEach((element) => {
+            observer.observe(element);
+          });
+        });
+    </script>
+    
+      
+
+    {% include 'includes/footer.html' %}
+
+     
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - EcoCraft</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/09492618d1.js" crossorigin="anonymous"></script>
+    <style>
+        /* Fade in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Zoom-in animation */
+        @keyframes zoomIn {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.2);
+            }
+        }
+
+        /* Apply zoom-in animation on hover */
+        .zoom:hover {
+            animation: zoomIn 0.3s forwards;
+        }
+    </style>
+</head>
+
+
+
+<body >
+    
+    <section class="bg-gray-100">
+        <div class=""> 
+            {% include 'includes/header.html' %}
+            
+
+        </div>
+    <!-- Contact Us Section -->
+    <section class="py-12 mt-[8%]">
+        <div class="text-center mb-12">
+            <h2 class="text-xl text-greenz-500">CONTACT US</h2>
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600">Ecocraft India </span> 
+            </h1>
+        </div>
+
+        <!-- Cards container -->
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-4 md:px-0">
+
+            <!-- Card 1 -->
+            <div class="fade-in bg-white p-6 rounded-lg shadow-lg flex flex-col items-center">
+                <i class='bx bxs-phone text-[90px] mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600'></i>
+                <h3 class="text-lg font-bold">Calling Support</h3>
+                <p class="text-gray-700 mt-2">9447440617</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="fade-in bg-white p-6 rounded-lg shadow-lg flex flex-col items-center">
+                <i class='bx bx-current-location text-[90px] mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600'></i>
+
+                <h3 class="text-lg font-bold">Office Location</h3>
+                <h4>MJ&COMPANY</h4>
+                <p class="text-gray-700 mt-2 text-center"> Jaigiri Christuraj Church, Ground 8/76 D,
+                    Mnagalathu Building, kuriam to Valayala Road ,  kuruvilagand P.O ,Kottayam Dt,  PIN NO 686633.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="fade-in bg-white p-6 rounded-lg shadow-lg flex flex-col items-center">
+                <i class='bx bx-envelope text-[90px] mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600'></i>
+
+                <h3 class="text-lg font-bold">Email Information</h3>
+                <p class="text-gray-700 mt-2">info@ecocraftboards.com</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="w-full h-96 md:h-[500px]">
+        <iframe 
+            class="w-full h-full" 
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15729.394036582422!2d76.562613!3d9.7365173!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b07d14508d8e601%3A0xf4fc301f30ba3ca2!2sStar%20plywoods!5e0!3m2!1sen!2sin!4v1725625928598!5m2!1sen!2sin" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+
+</section>
+    <div style="background-image: radial-gradient(
+        circle at 20% 100%,
+        rgba(184, 255, 184, 0.1) 0%,    /* Light green */
+        rgba(184, 255, 184, 0.1) 33%,   /* Light green */
+        rgba(96, 192, 96, 0.1) 33%,     /* Medium green */
+        rgba(96, 192, 96, 0.1) 66%,     /* Medium green */
+        rgba(7, 128, 7, 0.1) 66%,       /* Dark green */
+        rgba(7, 128, 7, 0.1) 99%        /* Dark green */
+      ),
+      linear-gradient(40deg, #014d02, #1b7e1e, #28a745, #87d991);
+    background-repeat: no-repeat;
+    background-size: cover;">
+        {% include 'includes/footer.html' %}
+
+    </div>
+    
+</body>
+
+</html>

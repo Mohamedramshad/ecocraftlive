@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ecocraft</title>
+    <link rel="stylesheet" href="{% static 'web/css/style.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/09492618d1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Calistoga&family=Pacifico&family=Poetsen+One&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script defer src="{% static 'web/js/script.js' %}"></script>  
+    <script defer src="{% static 'web/js/main.js' %}"></script>  
+    <style>
+      /* Custom animation for fade-in-up */
+      @keyframes fadeInUp {
+          0% {
+              opacity: 0;
+              transform: translateY(20px);
+          }
+          100% {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+
+      /* Applying the animation */
+      .fade-in-up {
+          opacity: 0; /* Ensure it starts hidden */
+          animation: fadeInUp 0.7s forwards;
+      }
+
+      /* Staggering delays for each element */
+      .fade-in-up:nth-child(1) {
+          animation-delay: 0.1s;
+      }
+
+      .fade-in-up:nth-child(2) {
+          animation-delay: 0.3s;
+      }
+
+      .fade-in-up:nth-child(3) {
+          animation-delay: 0.5s;
+      }
+
+      .fade-in-up:nth-child(4) {
+          animation-delay: 0.7s;
+      }
+  </style>
+</head>
+
+<!-- fixed top-0 w-full -->
+  <body>
+  {% include 'includes/header.html' %}
+
+    <a href="#your-target-section" class=" fixed right-0 top-1/2 mb-[5%] transform -translate-y-1/2 bg-red-500 text-white py-2 px-2 rounded-l-lg shadow-lg hover:bg-red-600 transition-colors z-50">
+      Enquire Now
+  </a>
+
+  <a href="https://wa.me/917736688827" class="fixed right-0 top-1/2 transform -translate-y-1/2 bg-green-500 text-white py-2 px-4 rounded-l-lg shadow-lg hover:bg-red-600 transition-colors z-50">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+  
+
+    <!-- Pop-up Modal -->
+    <!-- <div id="welcomeModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50">
+      <div class="bg-white rounded-lg p-8 shadow-lg max-w-sm w-full">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4">Welcome to EcoCraft</h2>
+          <p class="text-gray-600 mb-6">Your canvas for your innovation</p>
+          <button id="closeModal" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Visit</button>
+      </div>
+    </div> -->
+
+    <!-- JavaScript for Pop-up and Swiper -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper
+        var swiper = new Swiper('.mySwiper', {
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+
+        // Show the pop-up modal after the site loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('welcomeModal').classList.remove('hidden');
+            }, 1000); // Show after 1 second
+        });
+
+        // Close the modal when the close button is clicked
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('welcomeModal').classList.add('hidden');
+        });
+    </script>
+
+    <!-- end pop up -->
+
+   
+
+      <!-- Arrow Button -->
+
+    <button id="scrollTopBtn" class="fixed bottom-4 right-4 p-3 rounded-full bg-gray-600 text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+          <!-- SVG for Up Arrow -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+          </svg>
+    </button>
+
+    <script>
+
+                // JavaScript to scroll to the top
+          const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+          // Show button when scrolling down
+          window.onscroll = function() {
+              if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                  scrollTopBtn.style.display = "block";
+              } else {
+                  scrollTopBtn.style.display = "none";
+              }
+          };
+
+          // Scroll to the top when the button is clicked
+          scrollTopBtn.addEventListener('click', function() {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+
+    </script>
+
+
+    <!-- arrow button  -->
+
+
+
+    <section class="mt-[60px] md:mt-[70px] lg:mt-[80px] " >  
+        <div class="swiper mySwiper  ">
+          <div class="swiper-wrapper">
+            {% for slider in slider %}
+            <div class="swiper-slide"><img src="{{slider.image.url}} " alt="" class="lg:h-[597px] w-full lg:w-[1366px] "></div>
+            {% endfor %}
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+        
+    </section> 
+    
+    <section>
+      <section class="wrapper">
+         <h3 class="text-[20px] font-semibold text-green-700 text-center pt-[30px]">
+             ____  Ecocraft Assurance  ____
+         </h3>
+        <!-- <h2 class="heading02 text-center alro-font aos-init aos-animate" data-aos="fade-in" data-aos-duration="500">Experience <span class="red-span">plywood</span> like never before with <span class="red-span">ecocraft</span></h2>"> -->
+
+        <div class="container mx-auto ">
+          <h1 class="text-[26px] md:text-[32px] lg:text-[36px] text-center pt-2 font-montserrat font-extrabold leading-snug tracking-wide text-gray-900 text-shadow-lg">
+            Experience <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600"></span> like never before with <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600">Ecocraft</span>
+        </h1>
+        
+      </div>
+
+         <div class="mt-[10vh]">
+          <ul class="flex justify-between  lg:justify-center flex-wrap md:flex-nowrap md:space-x-4  mt-[5%]">
+            <li class="w-[48%]  mb-[50px] md:w-[22%] px-[20px] py-[40px] md:mb-5 bg-black rounded-[30px]  fade-in-up relative ">
+              <img src="{% static './web/image/assurance-icon1.png' %}" alt=" " id="animatedIcon" class="w-[75px] h-[100px] absolute bg-green-700 px-[15px] py-[30px] rounded-full top-[-40px] left-[20px]">  
+              <h4 class="text-[14px] text-center mt-7 text-white text-lg font-semibold">
+                    Bespoke
+                </h4>
+                <p class=" text-[12px] md:text-center md:text-[16px] mt-1 text-white ">
+                    Each Sheet is a Detailed  Masterpiece
+                </p>
+            </li>
+
+            <li class="w-[48%] mb-[50px] sm:w-[48%] md:w-[22%] px-[30px] py-[40px]  md:mb-5 bg-black rounded-[30px]  fade-in-up relative">
+              <img src="{% static './web/image/assurance-icon2.png' %}" alt=" "id="animatedIcon" class="w-[70px] h-[100px] absolute bg-green-700 px-[20px] py-[30px] rounded-full top-[-40px] left-[20px]">  
+                
+              <h4 class="text-[14px] text-center mt-7 text-white text-lg font-semibold">
+                    Authenticity
+                </h4>
+                <p class=" text-[12px] md:text-center md:text-[16px] mt-1 text-white ">
+                    Plywood That Assures  Long-term Durability
+                </p>
+            </li>
+
+            <li class="w-[48%]  mb-[50px] md:w-[22%] px-[20px] py-[40px] md:mb-5 bg-black rounded-[30px]  fade-in-up relative ">
+              <img src="{% static './web/image/assurance-icon3.png' %}" alt=" " id="animatedIcon" class="w-[75px] h-[100px] absolute bg-green-700 px-[15px] py-[30px] rounded-full top-[-40px] left-[20px]">  
+              <h4 class="text-[14px] text-center mt-7 text-white text-lg font-semibold">
+                  Versatility
+                </h4>
+                <p class=" text-[12px] md:text-center md:text-[16px] mt-1 text-white ">
+                  A world of choices at your fingertips
+                </p>
+            </li>
+
+            <li class="w-[48%]  mb-[50px] md:w-[22%] px-[20px] py-[40px] md:mb-5 bg-black rounded-[30px]  fade-in-up relative ">
+              <img src="{% static './web/image/assurance-icon4.png' %}" alt=" " id="animatedIcon" class="w-[75px] h-[100px] absolute bg-green-700 px-[15px] py-[30px] rounded-full top-[-40px] left-[20px]">  
+              <h4 class="text-[14px] text-center mt-7 text-white text-lg font-semibold">
+                  Sustainability
+                </h4>
+                <p class=" text-[12px] md:text-center md:text-[16px] mt-1 text-white ">
+                  Committed eco-friendly practices
+                </p>
+            </li>
+    </ul>
+       <!-- count  -->
+    <div>
+      <ul class="flex justify-center pt-[3%]">
+          <li class="pr-[10%]">
+              <h4 class="count-up stroked-text md:text-white text-[20px] md:text-[50px] font-semibold border-b-2 border-black" data-target="4500000">0</h4>
+              <h5 class="text-[12px] md:text-[18px] pt-[15px]">Sheets Per Annum</h5>
+          </li>
+  
+          <li class="pr-[10%]">
+              <h4 class="count-up stroked-text md:text-white text-[20px] md:text-[50px] font-semibold border-b-2 border-black" data-target="2500">0</h4>
+              <h5 class="text-[12px] md:text-[18px] pt-[15px]">Sales Outlets</h5>
+          </li>
+  
+          <li>
+              <h4 class="count-up stroked-text md:text-white text-[20px] md:text-[50px] font-semibold border-b-2 border-black" data-target="500000">0</h4>
+              <h5 class="text-[12px] md:text-[18px] pt-[15px]">Delighted Customers</h5>
+          </li>
+      </ul>
+  </div>
+  
+        
+      </section>
+  </section>
+
+  <script>
+    document.addEventListener('scroll', function() {
+    const counters = document.querySelectorAll('.count-up');
+    const speed = 200; // Adjust this value to control the speed of counting
+
+    counters.forEach(counter => {
+        const animate = () => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+
+            const increment = target / speed;
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(animate, 10);
+            } else {
+                counter.innerText = target.toLocaleString(); // Formatting with commas
+            }
+        };
+
+        const elementPosition = counter.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+
+        if (elementPosition < screenPosition) {
+            animate();
+        }
+    });
+});
+
+  </script>
+
+       <!-- count  -->
+
+
+  <section class="pt-[4%] bg-cover bg-no-repeat mt-[2%] ">
+    <section class=" flex-col md:flex-row flex justify-between wrapper">
+      {% for legacy in legacy %}
+      <div class=" w-full md:w-[50%]">
+            <img src="{{legacy.image.url}}" alt="" class=" w-full rounded md:w-[70%] slide-in" id="animatedImage">
+        </div>
+        {% endfor %}
+        <div class="w-full md:w-[50%] mt-[5%] slide-in-text" id="animatedText">
+            <h2 class="text-[20px] text-black font-bold border-b-2 pb-[1%] border-black">Legacy</h2>
+            <p class="pt-[2%] text-[18px] text-justify">
+              Celebrating a remarkable 40-year journey since 1984,
+               Ecocraft is one of the leading players in the interior
+                infrastructure industry. Today, Ecocraft  operates with
+                 a total installed capacity of 4.50 million sheets per annum.
+                  At Ecocraft , we are committed to delivering products and solutions
+                   that represent an invaluable investment for our customers, along with lifetime insurance.
+            </p>
+            <div class="mt-[4%] justify-center">
+                <a href="{% url 'web:about' %}" class="bg-green-700 text-white rounded-full px-[6%] py-[2%]">Read More</a>
+            </div>
+            
+        </div>
+    </section>
+</section>
+
+<script>
+  
+    document.addEventListener("DOMContentLoaded", function () {
+        const image = document.getElementById('animatedImage');
+        const text = document.getElementById('animatedText');
+
+        function handleScroll() {
+            const imageRect = image.getBoundingClientRect();
+            const textRect = text.getBoundingClientRect();
+            if (imageRect.top < window.innerHeight && imageRect.bottom >= 0) {
+                image.classList.add('slide-in-left');
+            }
+            if (textRect.top < window.innerHeight && textRect.bottom >= 0) {
+                text.classList.add('slide-in-right');
+            }
+            if (imageRect.top < window.innerHeight && imageRect.bottom >= 0 && textRect.top < window.innerHeight && textRect.bottom >= 0) {
+                window.removeEventListener('scroll', handleScroll);
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Initial check
+    });
+</script>
+
+<style>
+  @keyframes slideInFromLeft {
+      0% {
+          transform: translateX(-100%);
+          opacity: 0;
+      }
+      100% {
+          transform: translateX(0);
+          opacity: 1;
+      }
+  }
+
+  .slide-in-left {
+      animation: slideInFromLeft 1s ease-out forwards;
+  }
+
+  @keyframes slideInFromRight {
+      0% {
+          transform: translateX(100%);
+          opacity: 0;
+      }
+      100% {
+          transform: translateX(0);
+          opacity: 1;
+      }
+  }
+
+  .slide-in-right {
+      animation: slideInFromRight 1s ease-out forwards;
+  }
+</style>
+
+  
+   <section class="pt-[4%]">
+    <section class="  flex-col md:flex-row wrapper flex justify-between">
+        
+      <div class="bg-black pr-[5%] w-full md:w-[48%] mt-[5%] pl-[10%] slide-in rounded-md relative md:left-10 z-20" id="content">
+        <h2 class="  mt-[5%] font-semiboldx flex text-green-500 pt-[7%]"><div class="bg-green-700 my-3 h-[1px] w-8 mr-2 "> </div> ECOCRAFT  PRODUCTS </h2>
+        <h1 class="text-white text-[21px] font-bold">Turn Your Interiors Into Purposeful Spaces with EcoCraft 
+
+        </h1>
+        <h2 class="text-white pt-[3%] pr-[5%] "  data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">
+          • Only EcoCraft company in India to be approved by Lloyds-United Kingdom, adhering to the British Standard BS 1088.
+        </h2 >
+        <h2 class="text-white pt-[3%] pr-[5%]"  data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">
+          • World’s only BWP that resists boiling water for upto 200 hours.
+        </h2>
+        <h2 class="text-white pt-[3%] pr-[5%]"  data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">
+          • Lifetime warranty on our products.
+        </h2>
+
+        <div #swiperRef="" class="swiper mySwiper w-[100%] h-[170px] mb-[8%] pt-[5%] pl-[2%] ">
+          <div class="swiper-wrapper">
+            <!-- <div class="swiper-slide"><img src="{% static './web/image/slide1.jpg' %}" alt="" ></div> -->
+            <div class="swiper-slide"><img src="{% static './web/image/slide2.jpg' %}" alt=""></div>
+            <div class="swiper-slide"><img src="{% static './web/image/slide3.jpg' %}" alt=""></div>
+            <div class="swiper-slide"><img src="{% static './web/image/slide5.jpg' %}" alt=""></div>
+
+          </div>
+          <!-- <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div> -->
+          <div class="swiper-pagination text-green-700"></div>
+        </div>
+      
+        <p class="append-buttons">
+          <button class="prepend-2-slides">Prepend 2 Slides</button>
+          <button class="prepend-slide">Prepend Slide</button>
+          <button class="append-slide">Append Slide</button>
+          <button class="append-2-slides">Append 2 Slides</button>
+        </p>
+      
+
+      </div>
+
+        </div>
+        
+      <div class="right-0 absolute  md:w-[52%] hidden md:flex mb-[%]">
+        <img src="{% static './web/image/xx.jpg' %}" alt="" class="w-[90%] slide-in rounded-md h-[490px]" id="content">
+      </div>
+    </section>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const image = document.getElementById('content');
+        const text = document.getElementById('content');
+
+        function handleScroll() {
+            const imageRect = image.getBoundingClientRect();
+            const textRect = text.getBoundingClientRect();
+            if (imageRect.top < window.innerHeight && imageRect.bottom >= 0) {
+                image.classList.add('slide-in-left');
+            }
+            if (textRect.top < window.innerHeight && textRect.bottom >= 0) {
+                text.classList.add('slide-in-right');
+            }
+            if (imageRect.top < window.innerHeight && imageRect.bottom >= 0 && textRect.top < window.innerHeight && textRect.bottom >= 0) {
+                window.removeEventListener('scroll', handleScroll);
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Initial check
+    });
+</script>
+
+<style>
+  @keyframes slideInFromLeft {
+      0% {
+          transform: translateX(-100%);
+          opacity: 0;
+      }
+      100% {
+          transform: translateX(0);
+          opacity: 1;
+      }
+  }
+
+  .slide-in-left {
+      animation: slideInFromLeft 1s ease-out forwards;
+  }
+
+  @keyframes slideInFromRight {
+      0% {
+          transform: translateX(100%);
+          opacity: 0;
+      }
+      100% {
+          transform: translateX(0);
+          opacity: 1;
+      }
+  }
+
+  .slide-in-right {
+      animation: slideInFromRight 1s ease-out forwards;
+  }
+</style>
+ 
+   <section class="pt-[5%]">
+    <section class="flex-col flex-wrap md:flex-row wrapper flex justify-between items-center py-[50px]">
+      <div class=" w-full md:w-[40%] mt-10 md:mt-0 md:mr-[10%] animate-fadeInLeft">
+        <h4 class="font-bold text-[22px] pb-[2%] text-green-700">
+          ____ All-In-One Convenience
+        </h4>
+        <p class=" w-full md:text-[18px] text-justify mb-[4%] delay-500">
+          Explore our Product Cost Calculator for accurate budgeting and check out our Plywood insights.
+          Your convenience is our priority.
+        </p>
+      </div>
+      <div class=" w-full flex md:w-[45%] animate-fadeInRight">
+        <div class="pr-[10%] group">
+          <img src="{% static './web/image/expertise-img1.png' %}" alt="" class="w-[100%] transform transition-transform duration-300 group-hover:scale-105">
+          <h4 class="font-semibold mt-[3%] text-[18px] text-center group-hover:text-green-700 transition-colors duration-300">Product Cost <br>Calculator</h4>
+        </div>
+        
+        <div class="group">
+          <a href="{% url 'web:visualise' %}">
+            <img src="{% static './web/image/expertise-img3 (1).webp' %}" alt="" class="transform transition-transform duration-300 group-hover:scale-105">
+            <h4 class="font-semibold mt-[3%] text-[18px] text-center group-hover:text-green-700 transition-colors duration-300">ColorBar</h4>
+
+          </a>
+          
+        </div>
+      </div>
+    </section>
+    
+
+   </section>
+   <div class="flex justify-center mb-4">
+    <h1 class="mx-auto text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-green-700 border-b-4 border-green-700 font-bold pb-2 transform transition duration-500 hover:scale-105 hover:text-green-800 opacity-0 animate-fadeInUp">
+      Our Projects
+    </h1>
+  </div>
+  
+  <!-- Add this in your Tailwind CSS configuration -->
+  <style>
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+  }
+  
+  .animate-fadeInUp {
+    animation: fadeInUp 0.5s ease-out forwards; /* Reduced duration to 0.5s */
+  }
+  </style>
+  
+  
+  
+  
+   <div class=" cont s--inactive mt-[-70px] md:mt-0">
+    <!-- cont inner start -->
+    <div class="cont__inner">
+      <!-- el start -->
+      <div class="el">
+        <div class="el__overflow">
+          <div class="el__inner">
+            <div class="el__bg"></div>
+            <div class="el__preview-cont">
+              <h2 class="hidden  md:flex el__heading">Bedroom</h2>
+            </div>
+            <div class="el__content">
+              <div class=" el__text">Bedroom</div>
+              <div class="el__close-btn"></div>
+            </div>
+          </div>
+        </div>
+        <div class="el__index">
+          <div class="el__index-back">1</div>
+          <div class="el__index-front">
+            <div class="el__index-overlay" data-index="1">1</div>
+          </div>
+        </div>
+      </div>
+      <!-- el end -->
+      <!-- el start -->
+      <div class="el">
+        <div class="el__overflow">
+          <div class="el__inner">
+            <div class="el__bg"></div>
+            <div class="el__preview-cont">
+              <h2 class=" hidden  md:flex el__heading">Dining Area</h2>
+            </div>
+            <div class="el__content">
+              <div class="el__text">Dining Area</div>
+              <div class="el__close-btn"></div>
+            </div>
+          </div>
+        </div>
+        <div class="el__index">
+          <div class="el__index-back">2</div>
+          <div class="el__index-front">
+            <div class="el__index-overlay" data-index="2">2</div>
+          </div>
+        </div>
+      </div>
+      <!-- el end -->
+      <!-- el start -->
+      <div class="el">
+        <div class="el__overflow">
+          <div class="el__inner">
+            <div class="el__bg"></div>
+            <div class="el__preview-cont">
+              <h2 class="hidden  md:flex el__heading">Living area</h2>
+            </div>
+            <div class="el__content">
+              <div class="el__text">living area</div>
+              <div class="el__close-btn"></div>
+            </div>
+          </div>
+        </div>
+        <div class="el__index">
+          <div class="el__index-back">3</div>
+          <div class="el__index-front">
+            <div class="el__index-overlay" data-index="3">3</div>
+          </div>
+        </div>
+      </div>
+      <!-- el end -->
+      <!-- el start -->
+      <div class="el">
+        <div class="el__overflow">
+          <div class="el__inner">
+            <div class="el__bg"></div>
+            <div class="el__preview-cont">
+              <h2 class="hidden  md:flex el__heading">kitchen</h2>
+            </div>
+            <div class="el__content">
+              <div class="el__text">kitchen</div>
+              <div class="el__close-btn"></div>
+            </div>
+          </div>
+        </div>
+        <div class="el__index">
+          <div class="el__index-back">4</div>
+          <div class="el__index-front">
+            <div class="el__index-overlay" data-index="4">4</div>
+          </div>
+        </div>
+      </div>
+      <!-- el end -->
+      <!-- el start -->
+      <div class="el">
+        <div class="el__overflow">
+          <div class="el__inner">
+            <div class="el__bg"></div>
+            <div class="el__preview-cont">
+              <h2 class="hidden  md:flex el__heading">office</h2>
+            </div>
+            <div class="el__content">
+              <div class="el__text">office</div>
+              <div class="el__close-btn"></div>
+            </div>
+          </div>
+        </div>
+        <div class="el__index">
+          <div class="el__index-back">5</div>
+          <div class="el__index-front">
+            <div class="el__index-overlay" data-index="5">5</div>
+          </div>
+        </div>
+      </div>
+      <!-- el end -->
+    </div>
+    <!-- cont inner end -->
+  </div>
+
+  
+
+  <!-- responsive -->
+    <div class="flex justify-center mb-[5%] ">
+      <h1 class="mx-auto text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-green-700 border-b-2 border-green-700 pb-2">
+        Our Varients
+      </h1>
+      
+    </div>
+  
+
+   
+    <section>
+      <ul class="flex flex-wrap justify-center shadow-2xl">
+        <li class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-2">          
+            <img src="{% static './web/image/Steel.png' %}" alt="" class="w-full transform transition duration-500 hover:scale-105">          
+        </li>
+    
+        <li class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-2">          
+            <img src="{% static './web/image/WPC.png' %}" alt="" class="w-full transform transition duration-500 hover:scale-105">          
+        </li>
+    
+        <li class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-2">          
+            <img src="{% static './web/image/Plywood-Gold.png' %}" alt="" class="w-full transform transition duration-500 hover:scale-105">          
+        </li>
+    
+        <li class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-2">          
+            <img src="{% static './web/image/PVC-Emerald.png' %}" alt="" class="w-full transform transition duration-500 hover:scale-105">          
+        </li>
+    
+        <li class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-2">          
+            <img src="{% static './web/image/Plywood-Silver.png' %}" alt="" class="w-full transform transition duration-500 hover:scale-105">          
+        </li>
+    
+        <li class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-2">          
+            <img src="{% static './web/image/PVC-Gold.png' %}" alt="" class="w-full transform transition duration-500 hover:scale-105">          
+        </li>
+    
+        <li class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-2">          
+            <img src="{% static './web/image/Plywood-Platinum.png' %}" alt="" class="w-full transform transition duration-500 hover:scale-105">          
+        </li>
+    
+        <li class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-2">          
+            <img src="{% static './web/image/PVC-Platinum.png' %}" alt="" class="w-full transform transition duration-500 hover:scale-105">          
+        </li>
+    
+        <li class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-2">          
+            <img src="{% static './web/image/Plywood-Classic (1).png' %}" alt="" class="w-full transform transition duration-500 hover:scale-105">          
+        </li>
+    
+        <li class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-2">          
+            <img src="{% static './web/image/PVC-Titanium.png' %}" alt="" class="w-full transform transition duration-500 hover:scale-105">          
+        </li>
+    
+        <li class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-2">          
+            <img src="{% static './web/image/PVC-Thunder.png' %}" alt="" class="w-full transform transition duration-500 hover:scale-105">          
+        </li>
+      </ul>
+    </section>
+    
+    
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+  <script src=""></script>
+
+
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <script src="">
+    
+     new WOW().init();
+
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          animation: {
+            fadeInRight: 'fadeInRight 1s ease-out forwards',
+            fadeInLeft: 'fadeInLeft 1s ease-out forwards',
+          },
+          keyframes: {
+            fadeInRight: {
+              '0%': { opacity: '0', transform: 'translateX(100px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            fadeInLeft: {
+              '0%': { opacity: '0', transform: 'translateX(-100px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+          },
+        },
+      },
+    }
+  </script>
+  <script>
+    AOS.init({
+        offset: 12, // offset (in px) from the original trigger point
+        delay: 500, // values from 0 to 3000, with step 50ms
+        duration: 400, // values from 0 to 3000, with step 50ms
+        easing: 'ease', // default easing for AOS animations
+        once: true, // whether animation should happen only once - while scrolling down
+        mirror: false, // whether elements should animate out while scrolling past them
+        anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+    });
+</script>
+    
+
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        pagination: {
+          // el: ".swiper-pagination",
+        },
+        autoplay:{
+          delay:2500,
+          disableOnInteraction: false,
+        }
+      });
+
+      srollReveal({
+        rest: true,
+        distance: '60px',
+        duration: 400
+      }
+
+      );
+      scrollReveal().reveal('.one, .section-title',{delay: 500, origin: 500,origin: 'left'});
+      scrollReveal().reveal('.sec-01 .one',{delay: 500, origin: 500,origin: 'bottom'});
+      scrollReveal().reveal('.text-box',{delay: 700, origin:  'right'});
+      scrollReveal().reveal('.media',{delay: 500, origin: 500,origin: 'bottom'});
+    </script>
+    <script>
+      // Intersection Observer to detect elements on scroll
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  entry.target.classList.add('fade-in-up');
+              } else {
+                  entry.target.classList.remove('fade-in-up'); // Remove the class if you want the animation to reset when scrolling away
+              }
+          });
+      });
+
+      // Observe all elements with the 'fade-in-up' class
+      document.querySelectorAll('.fade-in-up').forEach(element => {
+          observer.observe(element);
+      });
+    </script>
+     {% include 'includes/footer.html' %}
+    </body>
+   
+</html>

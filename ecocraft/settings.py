@@ -1,32 +1,36 @@
-
 from pathlib import Path
-
 import os
-
-from pathlib import Path
-from django.utils.timezone import timedelta
-
+from datetime import timedelta
 from dotenv import load_dotenv
 
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# ==============================
+# CORE SETTINGS
+# ==============================
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-defaultkey')
+DEBUG = os.getenv('DEBUG', 'False').lower() in ['true', '1', 't']
+PROJECT_MODE = os.getenv('PROJECT_MODE', 'local')
 
-SECRET_KEY = 'django-insecure-)s2_39wnaphc)umw587jy2@n)t)#=$y!cv8+(*-zg+33yjka8u'
+# ==============================
+# ALLOWED HOSTS
+# ==============================
+allowed_hosts_str = os.getenv('ALLOWED_HOSTS', '')
+ALLOWED_HOSTS = [host.strip() for host in allowed_hosts_str.split(',') if host.strip()]
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# ==============================
+# TIMEZONE & LANGUAGE
+# ==============================
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE = os.getenv('TIME_ZONE', 'UTC')
+USE_I18N = True
+USE_TZ = True
 
-
-allowed_hosts_str = os.getenv('ALLOWED_HOSTS')
-allowed_hosts_list = allowed_hosts_str.split(',')
-allowed_hosts_list = [host.strip() for host in allowed_hosts_list]
-ALLOWED_HOSTS = allowed_hosts_list
-
-
-# Application definition
-
+# ==============================
+# APPLICATIONS
+# ==============================
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -34,8 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'web'
+    'web',
 ]
 
 MIDDLEWARE = [
@@ -53,7 +56,7 @@ ROOT_URLCONF = 'ecocraft.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["templates"],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,67 +71,54 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ecocraft.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
+# ==============================
+# DATABASE CONFIGURATION (SUPABASE)
+# ==============================
 DATABASES = {
     'default': {
-        'ENGINE':  os.getenv('ENGINE'),
+        'ENGINE': os.getenv('ENGINE', 'django.db.backends.postgresql'),
         'NAME': os.getenv('DATABASE_NAME'),
-        'HOST': os.getenv('DATABASE_HOST'),
         'USER': os.getenv('DATABASE_USER'),
         'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-        'PORT': os.getenv('DATABASE_PORT')
+        'HOST': os.getenv('DATABASE_HOST'),
+        'PORT': os.getenv('DATABASE_PORT', 5432),
+        'OPTIONS': {
+            'sslmode': os.getenv('DATABASE_SSL_MODE', 'require'),  # Enforce SSL
+        },
     }
 }
 
-# Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
-
+# ==============================
+# PASSWORD VALIDATION
+# ==============================
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-
-ANGUAGE_CODE = 'en-us'
-
-TIME_ZONE =  os.getenv('TIME_ZONE')
-
-USE_I18N = True
-
-USE_TZ = True
-
-
-PROJECT_MODE = os.environ.get('PROJECT_MODE', 'local')
-
+# ==============================
+# STATIC & MEDIA FILES
+# ==============================
 if PROJECT_MODE == 'production':
+    STATIC_ROOT = BASE_DIR / "static"
     MEDIA_ROOT = BASE_DIR / "media"
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 else:
-    MEDIA_ROOT = BASE_DIR / "media"
     STATICFILES_DIRS = [BASE_DIR / "static"]
+    MEDIA_ROOT = BASE_DIR / "media"
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-
-# AUTH_USER_MODEL  = 'users.User'
-# AUTH_PROFILE_MODULE = 'users.User'
-
+# ==============================
+# DEFAULT AUTO FIELD
+# ==============================
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# ==============================
+# REST FRAMEWORK & JWT
+# ==============================
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -142,11 +132,25 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=365),
 }
 
-EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
+# ==============================
+# EMAIL CONFIGURATION
+# ==============================
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
 EMAIL_HOST = os.getenv('EMAIL_HOST')
-EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL')
-EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_PORT = int(os.getenv('EMAIL_PORT', 465))
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', 'True').lower() in ['true', '1', 't']
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
+# ==============================
+# SECURITY SETTINGS
+# ==============================
+CSRF_TRUSTED_ORIGINS = [f"https://{host}" for host in ALLOWED_HOSTS if host not in ('localhost', '127.0.0.1')]
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+# ==============================
+# CORS
+# ==============================
 CORS_ORIGIN_ALLOW_ALL = True

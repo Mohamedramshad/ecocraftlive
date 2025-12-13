@@ -28,4 +28,6 @@ COPY . .
 EXPOSE 10000
 
 # Start the Django app with Gunicorn
-CMD ["gunicorn", "ecocraft.wsgi:application", "--bind", "0.0.0.0:$8000"]
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+CMD ["/start.sh"]

@@ -2,6 +2,10 @@
 # import os
 # from datetime import timedelta
 # from dotenv import load_dotenv
+import os
+from pathlib import Path
+from datetime import timedelta
+from dotenv import load_dotenv
 
 # load_dotenv()
 
@@ -154,6 +158,8 @@
 # # CORS
 # # ==============================
 # CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = os.getenv('CORS_ORIGIN_ALLOW_ALL', 'False') == 'True'
+
 
 
 from pathlib import Path
@@ -301,4 +307,4 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
 CORS_ORIGIN_ALLOW_ALL = os.getenv('CORS_ORIGIN_ALLOW_ALL', 'False') == 'True'
-CORS_ALLOWED_ORIGINS = [origin.strip() for origin in os.getenv('CORS_ALLOWED_ORIGINS', '').split(',')]
+# CORS_ALLOWED_ORIGINS = [origin.strip() for origin in os.getenv('CORS_ALLOWED_ORIGINS', '').split(',')]
